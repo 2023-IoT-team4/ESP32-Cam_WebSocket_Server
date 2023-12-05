@@ -1,0 +1,29 @@
+<html>
+    <head>
+        <title>Pet Monitor</title>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" />
+        <link rel="stylesheet" href="/client.css">
+    </head>
+    <body >
+        <div class="wrapper">
+            <img src="">
+        </div>
+        <script>
+            const WS_IP = "Your WS IP Address"
+            const WS_PORT = "Your WS Port"
+            const img = document.querySelector('img');
+            const WS_URL = `ws:///${WS_IP}:${WS_PORT}`;
+            const ws = new WebSocket(WS_URL);
+            let urlObject;
+            ws.onopen = () => console.log(`Connected~`);
+            ws.onmessage = message => {
+                const arrayBuffer = message.data;
+                if(urlObject){
+                    URL.revokeObjectURL(urlObject);
+                }
+                urlObject = URL.createObjectURL(new Blob([arrayBuffer]));
+                img.src = urlObject;
+            }
+        </script>
+    </body>
+</html>

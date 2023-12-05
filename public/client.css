@@ -1,0 +1,29 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+  }
+  
+  body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    margin: 0;
+    background-color: #9ee7ea;
+    background-image: url("cat.png");
+    background-size: 25%;
+  }
+  
+  .hide {
+    display: none;
+  }
+  
+  .wrapper {
+    background-color: #ffffff;
+    border-radius: 0.5em;
+    border-color: #3939ff;
+    border-width: 0.6em;
+    border-style: solid;
+  }
