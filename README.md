@@ -17,14 +17,14 @@ git clone https://github.com/opencv/opencv/
 ```
 
 ### 새롭게 Define 해야하는 변수 값
-1. server.js
-  WS_PORT : Websocket 포트번호
-  HTTP_PORT : Websocket 서버에 client가 접속할 포트번호
-  phpServerURL : php서버 url
+  1. server.js
+    WS_PORT : Websocket 포트번호
+    HTTP_PORT : Websocket 서버에 client가 접속할 포트번호
+    phpServerURL : php서버 url
 
-2. public/client.html
-   WS_IP : Websocket 서버의 IP 주소
-   WS_PORT : client가 접속할 Websocket 서버의 포트번호
+  2. public/client.html
+     WS_IP : Websocket 서버의 IP 주소
+     WS_PORT : client가 접속할 Websocket 서버의 포트번호
    
-3. catDetection.py
-  openCV_path : openCV 라이브러리 위치
+  3. catDetection.py
+    openCV_path : openCV 라이브러리 위치
