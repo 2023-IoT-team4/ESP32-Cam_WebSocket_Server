@@ -1,6 +1,8 @@
 # ESP32-Cam_WebSocket_Server
-ESP32-Cam 이미지를 WebSocket을 통해 클라이언트에 전달하는 Node.js 서버 코드입니다.  
-본 서버 목적은 ESP32-CAM과 Websocket 통신으로 받은 이미지 데이터를 특정 port로 접속한 client에게 스트리밍 서비스를 제공하는 것입니다.
+ESP32-Cam 이미지를 WebSocket을 통해 클라이언트에 전달하는 Node.js 서버 코드입니다.
+
+
+본 서버 목적은 ESP32-CAM과 Websocket 통신 과정에서 받은 이미지 데이터를 특정 port로 접속한 client에게 스트리밍 서비스를 제공하는 것입니다.
 
 ### Node.js 환경세팅하기
 ```
