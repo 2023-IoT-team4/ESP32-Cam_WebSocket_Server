@@ -6,12 +6,12 @@
     </head>
     <body >
         <div class="wrapper">
-            <img src="">
+            <img src="myPet.jpg">
         </div>
         <script>
+            const img = document.querySelector('img');
             const WS_IP = "Your WS IP Address"
             const WS_PORT = "Your WS Port"
-            const img = document.querySelector('img');
             const WS_URL = `ws:///${WS_IP}:${WS_PORT}`;
             const ws = new WebSocket(WS_URL);
             let urlObject;

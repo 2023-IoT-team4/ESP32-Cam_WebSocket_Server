@@ -6,9 +6,9 @@ const { execSync } = require('child_process');
 const fs = require('fs');
 const axios = require('axios');
 
-const WS_PORT = "Your WS Port";             // Websocket 서버 포트
-const HTTP_PORT = "Your HTTP Port";         // Client 접속 포트
-const IMAGE_GENERATION_INTERVAL = 10 * 1000;     // 10 seconds
+const WS_PORT = "Your WS Port";                 // Websocket 서버 포트
+const HTTP_PORT = "Your HTTP Port";             // Client 접속 포트
+const IMAGE_GENERATION_INTERVAL = 5 * 1000;     // 5 seconds
 const phpServerURL = 'Your PHP Server URL';
 
 const wsServer = new WebSocket.Server({ port: WS_PORT }, () => console.log(`WS Server is listening at ${WS_PORT}`));
@@ -17,10 +17,11 @@ let lastCheckedDate = new Date();
 lastCheckedDate.setHours(0, 0, 0, 0);
 let isPosted = false;
 
+// Websokect 서버와 연결된 Client 배열
 let connectedClients = [];
 
-let imageDataBuffer = null;
-let copiedImageData = null;
+let imageDataBuffer = null;     // ESP32-Cam으로부터 받은 이미지 버퍼를 저장하는 변수
+let copiedImageData = null;     // imageDataBuffer의 복사본
 
 wsServer.on('connection', (ws, req) => {
     console.log('Connected');
@@ -39,12 +40,14 @@ wsServer.on('connection', (ws, req) => {
     });
 });
 
+// 두 배열에 같은지 확인하는 함수
 function arraysAreEqual(arr1, arr2) {
     return arr1.length === arr2.length && arr1.every((value, index) => value === arr2[index]);
 }
 
+// IMAGE_GENERATION_INTERVAL초마다 image buffer를 받아오고
+// 해당 이미지에서 고양이가 탐지되는지 판단하고 이후 작업을 수행하는 함수
 function imageGenInterval() {
-
     if (imageDataBuffer) {
         // 이전에 복사한 이미지 데이터와 동일한 경우로 ESP32-CAM으로부터 데이터가 안 온다고 판단
         if (copiedImageData != null && arraysAreEqual(copiedImageData, imageDataBuffer)) {
@@ -96,6 +99,7 @@ function imageGenInterval() {
                         img: imgData,
                         detected: true
                     }
+                    
                     postData(data);
                 }
             }
@@ -116,7 +120,8 @@ function postData(data) {
         data: data
     }).then(response => {
         console.log("posted");
-        console.log(response.data);
+
+        // Ack를 정상적으로 받지 못한 경우 다시 POST하기
         if (!response.data.result) {
             isPosted = false;
         }
