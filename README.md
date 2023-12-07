@@ -16,8 +16,9 @@ git clone https://github.com/opencv/opencv/
 
 ### 변수 채우기
 1. server.js
-   - WS_PORT : Websocket 포트번호
-   - HTTP_PORT : Node.js서버에 client가 접속할 포트번호
-   - phpServerURL : php서버 url
+- WS_PORT : Websocket 포트번호
+- HTTP_PORT : Node.js서버에 client가 접속할 포트번호
+- phpServerURL : php서버 url
+  
 2. catDetection.py
    - openCV_path : openCV 라이브러리 위치
